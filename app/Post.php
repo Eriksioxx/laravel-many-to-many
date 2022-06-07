@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -10,7 +11,7 @@ class Post extends Model
 
 
     public function category(){
-        return $this->belongTo('App\Category');
+        return $this->belongsTo('App\Category');
     }
 
     //take a string as input and return a unique slug version

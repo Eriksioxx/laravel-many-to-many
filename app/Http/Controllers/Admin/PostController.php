@@ -17,9 +17,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Post $post)
     {
         $posts= Post::all();
+
+
         return view('admin.posts.index', compact('posts'));
 
     }
@@ -87,9 +89,14 @@ class PostController extends Controller
     {
         $post=Post::find($id);
 
+        if(!$post){
+            abort(404);
+        }
+
         $category = Category::find($post->category_id);
 
         return view('admin.posts.show', compact('post', 'category'));
+
     }
 
     /**
