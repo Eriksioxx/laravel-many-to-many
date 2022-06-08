@@ -14,6 +14,10 @@ class Post extends Model
         return $this->belongsTo('App\Category');
     }
 
+    public function tags(){
+        return $this->belongsToMany('App\Tag');
+    }
+
     //take a string as input and return a unique slug version
     public static function convertToSlug($title){
         $slugPrefix = Str::slug($title);
