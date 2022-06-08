@@ -48,6 +48,24 @@
                             </div>
                             {{-- / Category --}}
 
+                            {{-- Tags --}}
+                            <div class="form-group ps-4">
+                                <h2 for="title">Tags:</h2>
+                                @foreach ($tags as $tag)
+                                    <input class="form-check-input ms-4" type="checkbox" value="{{ $tag->id }}"
+                                        name="tags[]" />
+                                    {{-- {{ $tags->id, in_array(old('tags[]', [])) ? 'checked' : '' }} --}}
+                                    <div class="form-check-label">{{ $tag->name }}</div>
+                                @endforeach
+
+                                @error('tags[]')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            {{-- / Tags --}}
+
                             {{-- content post --}}
                             <div class="form-group">
                                 <label for="content">Content:</label>

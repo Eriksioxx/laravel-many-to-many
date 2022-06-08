@@ -46,6 +46,28 @@
                             </div>
                             {{-- / Category --}}
 
+                            {{-- Tags --}}
+                            <div class="form-group ml-1">
+                                <h2 for="title">Tags:</h2>
+                                @foreach ($tags as $tag)
+                                    @if ($errors->any())
+                                        <input class="form-check-input " type="checkbox" value="{{ $tag->id }}"
+                                            name="tags[]" {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }} />
+                                    @else
+                                        <input class="form-check-input " type="checkbox" value="{{ $tag->id }}"
+                                            name="tags[]" {{ $post->tags->contains($tag) ? 'checked' : '' }} />
+                                    @endif
+                                    <div class="form-check-label">{{ $tag->name }}</div>
+                                @endforeach
+
+                                @error('tags[]')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            {{-- / Tags --}}
+
                             <div class="form-group">
                                 <label for="content">Content:</label>
                                 <textarea type="text" name="content" class="form-control @error('content') is-invalid @enderror"

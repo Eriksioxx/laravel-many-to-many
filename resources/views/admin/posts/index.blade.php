@@ -18,6 +18,7 @@
                             <th>ID</th>
                             <th>Title</th>
                             <th>Category</th>
+                            <th>Tags</th>
                             <th>Slug</th>
                             <th class="text-center">Actions</th>
                         </tr>
@@ -30,6 +31,11 @@
                                 <td>{{ $post->id }}</td>
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->category->name }}</td>
+                                <td>
+                                    @foreach ($post->tags as $tag)
+                                        <span>{{ $tag->name }}</span>
+                                    @endforeach
+                                </td>
                                 <td>{{ $post->slug }}</td>
                                 <td>{{ $post->content }}</td>
                                 <td class="text-center">
